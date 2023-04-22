@@ -1,9 +1,12 @@
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Nav = () => {
-  const inactiveLink = "flex gap-1";
-  const activeLink = inactiveLink + " bg-white text-blue-900";
+  const inactiveLink = "flex gap-1 p-1";
+  const activeLink = inactiveLink + " bg-highlight text-black rounded-sm";
+  const router = useRouter();
+  const { pathname } = router;
   return (
     <aside text-white p-4 pr-0>
       <Link href={"/"} className="flex gap-1 mb-4 mr-4">
@@ -25,7 +28,10 @@ const Nav = () => {
       </Link>
 
       <nav className="flex flex-col gap-2">
-        <Link href={"/"} className={activeLink}>
+        <Link
+          href={"/"}
+          className={pathname === "/" ? activeLink : inactiveLink}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -42,7 +48,10 @@ const Nav = () => {
           </svg>
           <span className="">Dashboard</span>
         </Link>
-        <Link href={"/products"} className={inactiveLink}>
+        <Link
+          href={"/products"}
+          className={pathname.includes("/products") ? activeLink : inactiveLink}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -58,9 +67,12 @@ const Nav = () => {
             />
           </svg>
 
-          <span className="">Products</span>
+          <span>Products</span>
         </Link>
-        <Link href={"/orders"} className={inactiveLink}>
+        <Link
+          href={"/orders"}
+          className={pathname.includes("/orders") ? activeLink : inactiveLink}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -76,9 +88,12 @@ const Nav = () => {
             />
           </svg>
 
-          <span className="">Orders</span>
+          <span>Orders</span>
         </Link>
-        <Link href={"/settings"} className={inactiveLink}>
+        <Link
+          href={"/settings"}
+          className={pathname.includes("/settings") ? activeLink : inactiveLink}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
